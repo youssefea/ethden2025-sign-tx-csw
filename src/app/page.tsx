@@ -8,6 +8,7 @@ import { TypedSign } from "@/components/TypedSign";
 import { Permit2 } from "@/components/Permit2";
 import { TransactWithPaymaster } from "@/components/TransactWithPaymaster";
 import { ConnectAndSIWE } from "@/components/ConnectAndSIWE";
+import { SignMessageWithStorage } from "@/components/SignMessageWithStorage";
 
 const abi = [
   {
@@ -68,6 +69,7 @@ function App() {
           <Transact />
           <TransactWithPaymaster />
           <SignMessage />
+          <SignMessageWithStorage />
           <TypedSign />
           <Permit2 chainId={account.chainId!} />
         </div>
