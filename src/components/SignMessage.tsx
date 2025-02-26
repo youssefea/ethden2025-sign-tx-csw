@@ -27,13 +27,17 @@ export function SignMessage() {
   const checkValid = useCallback(async () => {
     if (!signature || !account.address || !client) return;
 
-    client
-      .verifyMessage({
-        address: account.address,
-        message: message.prepareMessage(),
-        signature,
-      })
-      .then((v) => setValid(v));
+    fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        address: account.address, 
+        message: message.prepareMessage(), 
+        signature 
+      }),
+    })
+      .then(response => response.json())
+      .then(data => setValid(data.success));
   }, [signature, account]);
 
   useEffect(() => {
